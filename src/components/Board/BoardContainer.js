@@ -11,8 +11,8 @@ const BoardContainer = () => {
   };
 
   useEffect(() => {
-    fetchWinners()
-  }, []);
+    fetchWinners();
+  });
 
   return <Board winners={winners} />;
 };

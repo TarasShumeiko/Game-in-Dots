@@ -1,7 +1,10 @@
 export const GameStatus = {
   INITIAL: 'INITIAL',
+  STARTED: 'STARTED',
   PLAYING: 'PLAYING',
+  FINISHED: 'FINISHED',
   COMPLETED: 'COMPLETED',
+  REPEATED: 'REPEATED',
 };
 
 export const SquareStatus = {

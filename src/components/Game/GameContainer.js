@@ -4,13 +4,13 @@ import { GameStatus } from '../../models';
 import GameData from './GameData';
 import GameField from './GameField';
 
-const GameContainer = () => {
-  const [mode, setMode] = useState(null);
+const GameContainer = ({ onSelectWinner, winnerData }) => {
+  const [mode, setMode] = useState('');
   const [name, setName] = useState('');
   const [status, setStatus] = useState(GameStatus.INITIAL);
 
   return (
-    <Grid container direction="column" alignItems="center" xs={8}>
+    <Grid container item direction="column" alignItems="center" xs={8}>
       <Grid item>
         <GameData
           mode={mode}
@@ -19,6 +19,7 @@ const GameContainer = () => {
           onChangeName={setName}
           status={status}
           onChangeStatus={setStatus}
+          winnerData={winnerData}
         />
       </Grid>
       {mode && (
@@ -28,6 +29,8 @@ const GameContainer = () => {
             status={status}
             onChangeStatus={setStatus}
             key={mode.field}
+            onSelectWinner={onSelectWinner}
+            name={name}
           />
         </Grid>
       )}

@@ -20,13 +20,14 @@ const ModePicker = ({ mode, onSelectMode }) => {
   const [labelWidth, setLabelWidth] = useState(0);
   const classes = useStyles();
 
-  const fetchSettings = async () => {
-    const result = await fetch('http://starnavi-frontend-test-task.herokuapp.com/game-settings');
-    const data = await result.json();
-    setSettings(data);
-  };
-
-  useEffect(fetchSettings, []);
+  useEffect(() => {
+    const fetchSettings = async () => {
+      const result = await fetch('http://starnavi-frontend-test-task.herokuapp.com/game-settings');
+      const data = await result.json();
+      setSettings(data);
+    };
+    fetchSettings();
+  }, []);
 
   useEffect(() => {
     setLabelWidth(inputLabelEl.current.offsetWidth);
@@ -42,8 +43,8 @@ const ModePicker = ({ mode, onSelectMode }) => {
         onChange={event => onSelectMode(event.target.value)}
         labelWidth={labelWidth}
       >
-        {settings && modes.map(item => (
-          <MenuItem value={settings[item.key]}>{item.title}</MenuItem>
+        {settings && modes.map((item, index) => (
+          <MenuItem value={settings[item.key]} key={index}>{item.title}</MenuItem>
         ))}
       </Select>
     </FormControl>

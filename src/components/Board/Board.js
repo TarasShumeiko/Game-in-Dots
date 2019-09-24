@@ -25,7 +25,7 @@ const Board = ({ winners }) => {
   const classes = useStyles();
 
   return (
-    <Grid xs={4}>
+    <Grid item xs={4}>
       <Typography variant="h2" className={classes.message}>
         Leader Board
       </Typography>

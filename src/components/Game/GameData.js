@@ -18,11 +18,12 @@ const useStyles = makeStyles(theme => ({
   message: {
     textAlign: 'center',
     margin: '2rem',
+    height: '70px',
     color: '#4e6066',
   }
 }));
 
-const GameData = ({ mode, onSelectMode, name, onChangeName, status, onChangeStatus }) => {
+const GameData = ({ mode, onSelectMode, name, onChangeName, status, onChangeStatus, winnerData }) => {
   const classes = useStyles();
 
   return (
@@ -41,7 +42,7 @@ const GameData = ({ mode, onSelectMode, name, onChangeName, status, onChangeStat
         <Button
           variant="contained"
           className={classes.button}
-          onClick={() => onChangeStatus(GameStatus.PLAYING)}
+          onClick={() => onChangeStatus(GameStatus.REPEATED)}
         >
           Play Again
         </Button>
@@ -50,17 +51,15 @@ const GameData = ({ mode, onSelectMode, name, onChangeName, status, onChangeStat
           variant="contained"
           disabled={!mode || !name}
           className={classes.button}
-          onClick={() => onChangeStatus(GameStatus.PLAYING)}
+          onClick={() => onChangeStatus(GameStatus.STARTED)}
         >
           Play
         </Button>
       )}
 
-      {status === GameStatus.COMPLETED && (
-        <Typography variant="h5" className={classes.message}>
-          {name} won!
-        </Typography>
-      )}
+      <Typography variant="h5" className={classes.message}>
+        {status === GameStatus.COMPLETED && `${winnerData.winner} won!`}
+      </Typography>
     </div>
   );
 };
